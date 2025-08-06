@@ -32,5 +32,170 @@ body {
         url("../img/hero.jpg");
     background-size: cover;
     background-position: top;
+    position: relative;
+    
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* defines what is visible (everything inside of the polygon). There is a quite great tool for that: https://bennettfeely.com/clippy/ */
+}
+
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    
+    /*  sometimes animations can shake around a bit at the end. This is a fix for that. No one really knows why :(
+        If the element gets rotated 180 degrees the backface would be shown to the user. But now it's hidden. */
+    backface-visibility: hidden;
+    margin-bottom: 60px;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    
+    /*
+        or small version:
+        
+        animation: moveInLeft 1s ease-out;
+    */
+    
+    /*
+        animation-delay: 3s;
+        animation-iteration-count: 3;
+    */
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.5px;
+    
+    animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    
+    80% {
+        transform: translateX(10px);
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* pseudo class "link" -> used when it is an anchor element <a> -> so it functions as a link 
+*  :visited -> user clicked on the button before
+*/
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px; /* you can use a very high value -> it's like 100% round no matter the value, if it's higher than 100% */
+    transition: all .2s; /* this has to be on the initial state */
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* the btn is currently clicked */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+/* adds an element after the element */
+.btn::after {
+    /* content & display are definitely required. Otherwise it won't be displayed */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+/* when hovered the button, the after-element should be scaled */
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards; /* this applies the state of "0%" before the animation starts */
 }
