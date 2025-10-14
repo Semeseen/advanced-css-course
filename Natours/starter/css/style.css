@@ -8,19 +8,27 @@ Dark green: #28b485
 */
 
 /* marging: 0 && padding: 0 , because the browser handles them different */
-* {
+*,
+*::after,
+*::before{
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* padding is removed from width and height, so that "width + padding = content-box" */
+    box-sizing: inherit; /* padding is removed from width and height, so that "width + padding = content-box" */
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
     font-family: 'Lato', sans-serif;  /* font-stuff should be in body (everytime) */
     font-weight: 400;
-    font-size: 16px;
+    /*font-size: 16px;*/
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+
+    box-sizing: border-box; /* padding is removed from width and height, so that "width + padding = content-box" */
 }
 
 .header {
@@ -39,12 +47,12 @@ body {
 
 .logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo {
-    height: 35px;
+    height: 3.5rem;
 }
 
 .text-box {
@@ -62,14 +70,14 @@ body {
     /*  sometimes animations can shake around a bit at the end. This is a fix for that. No one really knows why :(
         If the element gets rotated 180 degrees the backface would be shown to the user. But now it's hidden. */
     backface-visibility: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 .heading-primary-main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
     
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -89,9 +97,9 @@ body {
 
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.5px;
+    letter-spacing: 1.75rem;
     
     animation: moveInRight 1s ease-out;
 }
@@ -99,11 +107,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
     
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
     
     100% {
@@ -115,11 +123,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -131,7 +139,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -147,22 +155,22 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     display: inline-block;
-    border-radius: 100px; /* you can use a very high value -> it's like 100% round no matter the value, if it's higher than 100% */
+    border-radius: 10rem; /* you can use a very high value -> it's like 100% round no matter the value, if it's higher than 100% */
     transition: all .2s; /* this has to be on the initial state */
     position: relative;
-}
+    font-size: 1.6rem;}
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 /* the btn is currently clicked */
 .btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
@@ -177,7 +185,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
