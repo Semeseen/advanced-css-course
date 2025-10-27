@@ -162,59 +162,63 @@ body {
 /* pseudo class "link" -> used when it is an anchor element <a> -> so it functions as a link 
 *  :visited -> user clicked on the button before
 */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem; /* you can use a very high value -> it's like 100% round no matter the value, if it's higher than 100% */
-  transition: all .2s; /* this has to be on the initial state */
-  position: relative;
-  font-size: 1.6rem;}
+.btn{
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem; /* you can use a very high value -> it's like 100% round no matter the value, if it's higher than 100% */
+    transition: all .2s; /* this has to be on the initial state */
+    position: relative;
+    font-size: 1.6rem;
+  }
+  
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-.btn:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
-}
+    /* when hovered the button, the after-element should be scaled */
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
 
-/* the btn is currently clicked */
-.btn:active {
-  transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
-}
+  /* the btn is currently clicked */
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+  
+  &--white{
+    background-color: $color-white;
+    color: $color-grey-dark;
 
-.btn--white {
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
+    &::after {
+      background-color: $color-white;
+    }
+  }
 
-/* adds an element after the element */
-.btn::after {
-  /* content & display are definitely required. Otherwise it won't be displayed */
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-}
+  /* adds an element after the element */
+  &::after {
+    /* content & display are definitely required. Otherwise it won't be displayed */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
 
-.btn--white::after {
-  background-color: $color-white;
-}
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards; /* this applies the state of "0%" before the animation starts */
+  }
 
-/* when hovered the button, the after-element should be scaled */
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--animated {
-  animation: moveInBottom .5s ease-out .75s;
-  animation-fill-mode: backwards; /* this applies the state of "0%" before the animation starts */
 }

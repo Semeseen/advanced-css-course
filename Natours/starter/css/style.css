@@ -126,8 +126,7 @@ body {
 /* pseudo class "link" -> used when it is an anchor element <a> -> so it functions as a link 
 *  :visited -> user clicked on the button before
 */
-.btn:link,
-.btn:visited {
+.btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -137,24 +136,32 @@ body {
   position: relative;
   font-size: 1.6rem;
 }
-
 .btn:hover {
   transform: translateY(-0.3rem);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+  /* when hovered the button, the after-element should be scaled */
 }
-
-/* the btn is currently clicked */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn {
+  /* the btn is currently clicked */
+}
 .btn:active {
   transform: translateY(-0.1rem);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
-
 .btn--white {
   background-color: #fff;
   color: #777;
 }
-
-/* adds an element after the element */
+.btn--white::after {
+  background-color: #fff;
+}
+.btn {
+  /* adds an element after the element */
+}
 .btn::after {
   /* content & display are definitely required. Otherwise it won't be displayed */
   content: "";
@@ -168,17 +175,6 @@ body {
   z-index: -1;
   transition: all 0.4s;
 }
-
-.btn--white::after {
-  background-color: #fff;
-}
-
-/* when hovered the button, the after-element should be scaled */
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards; /* this applies the state of "0%" before the animation starts */
