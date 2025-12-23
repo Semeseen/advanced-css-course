@@ -40,6 +40,15 @@
     }
   }
 
+  &--green{
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   /* adds an element after the element */
   &::after {
     /* content & display are definitely required. Otherwise it won't be displayed */
