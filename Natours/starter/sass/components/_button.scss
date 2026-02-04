@@ -2,6 +2,7 @@
 *  :visited -> user clicked on the button before
 */
 .btn{
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -12,6 +13,10 @@
     transition: all .2s; /* this has to be on the initial state */
     position: relative;
     font-size: $default-font-size;
+    
+    // Change for the <button> element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -26,7 +31,9 @@
   }
 
   /* the btn is currently clicked */
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-0.1rem);
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
