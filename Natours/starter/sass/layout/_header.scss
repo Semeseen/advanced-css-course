@@ -13,7 +13,7 @@
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* defines what is visible (everything inside of the polygon). There is a quite great tool for that: https://bennettfeely.com/clippy/ */
 
   // 192dpi => apple retina resolution
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
     background-image: linear-gradient(
                     to right bottom,
                     rgba($color-primary, 0.8),
